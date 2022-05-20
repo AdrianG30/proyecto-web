@@ -1,6 +1,11 @@
 import mongoose from 'mongoose';
 
 const ClienteSchema = new mongoose.Schema({
+    _id: {
+        type: String,
+        unique: true,
+        required: true,
+    },
     direcciones: [
         {
             type: mongoose.Schema.Types.ObjectId,
@@ -25,12 +30,10 @@ const ClienteSchema = new mongoose.Schema({
     },
     password: {
         type: String,
-        required: true,
     },
     telefono: {
         type: String,
         length: 9,
-        required: true,
     },
     fechaRegistro: {
         type: Date,
