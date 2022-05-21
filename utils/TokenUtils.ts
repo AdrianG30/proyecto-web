@@ -34,10 +34,10 @@ export function createLoginTokens(_id: String, email: String): LoginTokens {
         _id,
         email,
     };
-    const accessToken = jwt.sign(JSON.stringify(payload), ACCESS_TOKEN_SECRET!!, {
+    const accessToken = jwt.sign(payload, ACCESS_TOKEN_SECRET!!, {
         expiresIn: '15m',
     });
-    const refreshToken = jwt.sign(JSON.stringify(payload), REFRESH_TOKEN_SECRET!!, {
+    const refreshToken = jwt.sign(payload, REFRESH_TOKEN_SECRET!!, {
         expiresIn: '1h',
     });
 
@@ -92,7 +92,9 @@ export async function verifyGoogleToken(token: string): Promise<GoogleTokenPaylo
             audience: WEB_CLIENT_ID,
         });
         const payload = ticket.getPayload();
+
         if (!payload) return null;
+
         return {
             _id: payload['sub'],
             nombre: payload['given_name']!!,

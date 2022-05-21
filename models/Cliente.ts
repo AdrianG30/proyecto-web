@@ -3,8 +3,6 @@ import mongoose from 'mongoose';
 const ClienteSchema = new mongoose.Schema({
     _id: {
         type: String,
-        unique: true,
-        required: true,
     },
     direcciones: [
         {
