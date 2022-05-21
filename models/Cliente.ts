@@ -35,6 +35,9 @@ const ClienteSchema = new mongoose.Schema({
         type: String,
         length: 9,
     },
+    imagenUrl: {
+        type: String,
+    },
     fechaRegistro: {
         type: Date,
         default: Date.now,
