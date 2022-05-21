@@ -49,4 +49,11 @@ const ClienteSchema = new mongoose.Schema({
     },
 });
 
+ClienteSchema.methods.toJSON = function () {
+    const obj = this.toObject();
+    delete obj.password;
+
+    return obj;
+};
+
 export default mongoose.models.Cliente || mongoose.model('Cliente', ClienteSchema, 'clientes');
