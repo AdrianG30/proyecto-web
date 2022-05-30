@@ -12,6 +12,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         const productos = await Producto.find({ _id: { $in: productosIds } }).populate({
             path: 'categoria',
             model: Categoria,
+            select: {
+                productos: 0,
+            },
         });
         res.status(200).json({ data: productos.map((producto) => producto.toJSON()) });
     } else res.status(405).end(`Method ${req.method} not allowed.`);

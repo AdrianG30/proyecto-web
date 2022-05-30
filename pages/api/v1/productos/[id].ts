@@ -12,6 +12,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         const producto = await Producto.findById(_id).populate({
             path: 'categoria',
             model: Categoria,
+            select: {
+                productos: 0,
+            },
         });
 
         if (!producto) {

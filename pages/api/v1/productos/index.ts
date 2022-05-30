@@ -10,12 +10,27 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         const productos = await Producto.find().populate({
             path: 'categoria',
             model: Categoria,
+            select: {
+                productos: 0,
+            },
         });
         res.status(200).json({ data: productos.map((producto) => producto.toJSON()) });
     } else if (req.method === 'POST') {
-        const { categoria, nombre, descripcion, precio, stock, imagenUrl, estado } = req.body;
+        const {
+            categoria: categoriaId,
+            nombre,
+            descripcion,
+            precio,
+            stock,
+            imagenUrl,
+            estado,
+        } = req.body;
+        const categoria = await Categoria.findById(categoriaId);
+
+        if (!categoria) res.status(400).json({ message: 'La categoria no existe' });
+
         const producto = await Producto.create({
-            categoria,
+            categoria: categoria._id,
             nombre,
             descripcion,
             precio,
@@ -24,6 +39,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             estado,
         });
         producto.populate({ path: 'categoria', model: Categoria });
+
+        categoria.productos.push(producto._id);
+        await categoria.save();
+
         res.status(201).json({ data: producto.toJSON() });
     } else res.status(405).end(`Method ${req.method} not allowed.`);
 }
