@@ -1,9 +1,10 @@
 import { FC } from 'react';
 import axios from 'axios';
 import { format } from 'date-fns';
-import Layout from '../../../components/Layout';
+import LayoutAdmin from '../../../components/LayoutAdmin';
 import { IMultipleResource } from '../../../interfaces/api-responses/IMultipleResource';
 import { ICategoria } from '../../../interfaces/ICategoria';
+import Link from 'next/link';
 
 interface CategoriaTablaProps {
     categorias: ICategoria[];
@@ -24,9 +25,18 @@ const CategoriaTabla: FC<CategoriaTablaProps> = ({ categorias }) => {
     ));
 
     return (
-        <Layout>
+        <LayoutAdmin>
             <div>
-                <h5>Categorias ({categorias.length})</h5>
+                <div className="row py-1">
+                    <div className="col">
+                        <h5>Categorias ({categorias.length})</h5>
+                    </div>
+                    <div className="col-auto">
+                        <Link href="/admin/categorias/categoriaRegistrar">
+                            <a className="btn btn-primary">Registar</a>
+                        </Link>
+                    </div>
+                </div>
                 <table className="table table-bordered table-striped">
                     <thead className="thead-light">
                         <tr>
@@ -40,7 +50,7 @@ const CategoriaTabla: FC<CategoriaTablaProps> = ({ categorias }) => {
                     <tbody>{filasCategoria}</tbody>
                 </table>
             </div>
-        </Layout>
+        </LayoutAdmin>
     );
 };
 

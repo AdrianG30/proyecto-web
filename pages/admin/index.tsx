@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Layout from '../../components/Layout';
+import Layout from '../../components/LayoutAdmin';
 import Image from 'next/image';
 
 class Home extends Component {

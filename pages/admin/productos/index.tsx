@@ -1,10 +1,11 @@
 import { FC } from 'react';
 import axios from 'axios';
 import { format } from 'date-fns';
-import Layout from '../../../components/Layout';
+import LayoutAdmin from '../../../components/LayoutAdmin';
 import { IMultipleResource } from '../../../interfaces/api-responses/IMultipleResource';
 import { IProducto } from '../../../interfaces/IProducto';
 import Image from 'next/image';
+import Link from 'next/link';
 
 interface ProductoTablaProps {
     productos: IProducto[];
@@ -36,9 +37,18 @@ const ProductoTabla: FC<ProductoTablaProps> = ({ productos }) => {
     ));
 
     return (
-        <Layout>
+        <LayoutAdmin>
             <div>
-                <h5>Productos ({productos.length})</h5>
+                <div className="row py-1">
+                    <div className="col">
+                        <h5>Productos ({productos.length})</h5>
+                    </div>
+                    <div className="col-auto">
+                        <Link href="/admin/productos/productoRegistrar">
+                            <a className="btn btn-primary">Registar</a>
+                        </Link>
+                    </div>
+                </div>
                 <table className="table table-bordered table-striped">
                     <thead className="thead-light">
                         <tr>
@@ -54,7 +64,7 @@ const ProductoTabla: FC<ProductoTablaProps> = ({ productos }) => {
                     <tbody>{filasProducto}</tbody>
                 </table>
             </div>
-        </Layout>
+        </LayoutAdmin>
     );
 };
 
