@@ -45,7 +45,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             (total: number, detalle: any) => total + detalle.subtotal,
             0
         );
-        pedido.total = Math.floor(total * 100) / 100;
+        pedido.total = Math.ceil(total * 10) / 10;
         await pedido.save();
 
         cliente.pedidos.push(pedido._id);
