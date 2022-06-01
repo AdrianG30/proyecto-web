@@ -18,7 +18,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         const pedidos = await query
             .sort({ fechaRegistro: -1 })
             .populate({ path: 'cliente', model: Cliente, select: { direcciones: 0, pedidos: 0 } })
-            .populate({ path: 'direccion', model: Direccion })
+            .populate({ path: 'direccion', model: Direccion, select: { cliente: 0 } })
             .populate({ path: 'detalles.producto', model: Producto, select: { categoria: 0 } });
         res.status(200).json({ data: pedidos.map((pedido) => pedido.toJSON()) });
     } else if (req.method === 'POST') {
@@ -32,6 +32,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         const pedido = await new Pedido({ cliente, direccion, detalles });
         await Pedido.populate(pedido, [
             { path: 'cliente', model: Cliente, select: { direcciones: 0, pedidos: 0 } },
+            { path: 'direccion', model: Direccion, select: { cliente: 0 } },
             { path: 'detalles.producto', model: Producto, select: { categoria: 0 } },
         ]);
 
