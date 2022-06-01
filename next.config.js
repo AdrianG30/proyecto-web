@@ -2,7 +2,7 @@
 const nextConfig = {
     reactStrictMode: true,
     images: {
-        domains: ['img.pizza'],
+        domains: ['dsnyk1xc1sxw4.cloudfront.net'],
     },
 };
 
