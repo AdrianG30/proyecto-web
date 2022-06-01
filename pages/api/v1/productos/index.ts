@@ -27,7 +27,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         } = req.body;
         const categoria = await Categoria.findById(categoriaId);
 
-        if (!categoria) res.status(400).json({ message: 'La categoria no existe' });
+        if (!categoria) {
+            res.status(400).json({ message: 'La categoria no existe' });
+            return;
+        }
 
         const producto = await Producto.create({
             categoria: categoria._id,
