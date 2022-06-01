@@ -9,7 +9,7 @@ const LayoutAdmin = ({ children }) => {
                 <div className="py-4">
                     <div className="row">
                         <Sidebar />
-                        <div className="col-9">{children}</div>
+                        <div className="col-10">{children}</div>
                     </div>
                 </div>
             </div>

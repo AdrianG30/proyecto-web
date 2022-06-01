@@ -33,7 +33,7 @@ const CategoriaTabla: FC<CategoriaTablaProps> = ({ categorias }) => {
                     </div>
                     <div className="col-auto">
                         <Link href="/admin/categorias/categoriaRegistrar">
-                            <a className="btn btn-primary">Registar</a>
+                            <a className="btn btn-primary">Registrar</a>
                         </Link>
                     </div>
                 </div>

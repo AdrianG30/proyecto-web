@@ -27,7 +27,7 @@ const ProductoTabla: FC<ProductoTablaProps> = ({ productos }) => {
             </td>
             <td>{`S/. ${producto.precio}`}</td>
             <td>{producto.stock}</td>
-            <td>{producto.categoria.nombre}</td>
+            <td>{producto.categoria!!.nombre}</td>
             <td>{format(Date.parse(producto.fechaRegistro), 'dd/MM/yyyy')}</td>
             <td>
                 <button className="btn btn-success me-2">Editar</button>
@@ -45,7 +45,7 @@ const ProductoTabla: FC<ProductoTablaProps> = ({ productos }) => {
                     </div>
                     <div className="col-auto">
                         <Link href="/admin/productos/productoRegistrar">
-                            <a className="btn btn-primary">Registar</a>
+                            <a className="btn btn-primary">Registrar</a>
                         </Link>
                     </div>
                 </div>

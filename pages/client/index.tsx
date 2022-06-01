@@ -12,19 +12,24 @@ interface ProductoTablaProps {
 
 const HomePage: FC<ProductoTablaProps> = ({ productos }) => {
     const cardProducto = productos.map((producto) => (
-        <div className="card py-2 " key={producto._id}>
-            <Image
-                className="img-thumbnail"
-                src={producto.imagenUrl}
-                alt="Producto Imagen"
-                width={300}
-                height={300}
-                layout="responsive"
-            />
-            <div className="card-body">
-                <p className="cardtitle">{producto.nombre}</p>
+        <Link key={producto._id} href="/client/ordenProducto">
+            <div className="col-auto">
+                <div className="card" style={{ cursor: 'pointer' }}>
+                    <Image
+                        className="img-thumbnail"
+                        src={producto.imagenUrl}
+                        alt="Producto Imagen"
+                        width={300}
+                        height={300}
+                        layout="responsive"
+                    />
+                    <div className="card-body">
+                        <p className="card-title">{producto.nombre}</p>
+                        <p className="card-card-subtitle mb-0">S/. {producto.precio}</p>
+                    </div>
+                </div>
             </div>
-        </div>
+        </Link>
     ));
 
     return (
@@ -57,11 +62,7 @@ const HomePage: FC<ProductoTablaProps> = ({ productos }) => {
                             <option value="0">Bebidas</option>
                         </select>
                     </div>
-                    <div className="row py-2 row-cols-auto">
-                        <Link href="/client/ordenProducto">
-                            <div className="col-auto">{cardProducto}</div>
-                        </Link>
-                    </div>
+                    <div className="row g-3 row-cols-lg-5">{cardProducto}</div>
                 </div>
             </div>
         </LayoutClient>
