@@ -4,6 +4,13 @@ const DireccionSchema = new mongoose.Schema({
     cliente: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Cliente',
+        required: true,
+    },
+    nombre: {
+        type: String,
+        minlength: 3,
+        maxlength: 50,
+        required: true,
     },
 });
 

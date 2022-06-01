@@ -4,12 +4,8 @@ const ClienteSchema = new mongoose.Schema({
     _id: {
         type: String,
     },
-    direcciones: [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'Direccion',
-        },
-    ],
+    direcciones: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Direccion' }],
+    pedidos: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Pedido' }],
     nombre: {
         type: String,
         minlength: 3,

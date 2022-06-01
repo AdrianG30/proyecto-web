@@ -2,7 +2,7 @@ import { ICategoria } from './ICategoria';
 
 export interface IProducto {
     _id: string;
-    categoria: ICategoria;
+    categoria: ICategoria | null;
     nombre: string;
     descripcion: string | null;
     precio: number;
